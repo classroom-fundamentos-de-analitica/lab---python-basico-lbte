@@ -189,7 +189,15 @@ def pregunta_07():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if int(line_splitted[1]) in result:
+                result[int(line_splitted[1])] += [line_splitted[0]]
+            else:
+                result[int(line_splitted[1])] = [line_splitted[0]]
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_08():
@@ -214,7 +222,15 @@ def pregunta_08():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if int(line_splitted[1]) in result:
+                result[int(line_splitted[1])] += [line_splitted[0]]
+            else:
+                result[int(line_splitted[1])] = [line_splitted[0]]
+    return sorted([(k, sorted(list(set(v)))) for k, v in result.items()])
 
 
 def pregunta_09():
@@ -237,7 +253,18 @@ def pregunta_09():
     }
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c3 = dict(zip([sublist[0] for sublist in dict_c3_list], [int(sublist[1]) for sublist in dict_c3_list]))
+            for k, v in dict_c3.items():
+                result[k] = result.get(k, 0) + 1
+
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
 
 
 def pregunta_10():
@@ -258,7 +285,14 @@ def pregunta_10():
 
 
     """
-    return
+    result = []
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            col4 = line_splitted[-2].split(",")
+            col5 = line_splitted[-1].split(",")
+            result.append((line_splitted[0], len(col4), len(col5)))
+    return result
 
 
 def pregunta_11():
