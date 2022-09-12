@@ -21,7 +21,7 @@ def pregunta_01():
     214
 
     """
-    with open('data.csv, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
         count = 0
         for line in file:
           line_splitted = repr(line)[1:-3].split("\\t")
@@ -45,7 +45,7 @@ def pregunta_02():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
       for line in file:
         line_splitted = repr(line)[1:-3].split("\\t")
         result[line_splitted[0]] = result.get(line_splitted[0], 0) + 1
@@ -68,7 +68,7 @@ def pregunta_03():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
       for line in file:
         line_splitted = repr(line)[1:-3].split("\\t")
         result[line_splitted[0]] = result.get(line_splitted[0], 0) + int(line_splitted[1])
@@ -98,7 +98,7 @@ def pregunta_04():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
       for line in file:
         line_splitted = repr(line)[1:-3].split("\\t")
         date = line_splitted[2].split('-')
@@ -122,7 +122,7 @@ def pregunta_05():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             if line_splitted[0] in result:
@@ -155,7 +155,7 @@ def pregunta_06():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('/blob/main/data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
