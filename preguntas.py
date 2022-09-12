@@ -190,7 +190,7 @@ def pregunta_07():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             if int(line_splitted[1]) in result:
@@ -223,7 +223,7 @@ def pregunta_08():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             if int(line_splitted[1]) in result:
@@ -254,7 +254,7 @@ def pregunta_09():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
@@ -286,7 +286,7 @@ def pregunta_10():
 
     """
     result = []
-    with open(data_path, 'r') as file:
+    with open('data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             col4 = line_splitted[-2].split(",")
