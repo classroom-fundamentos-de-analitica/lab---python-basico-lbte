@@ -21,7 +21,12 @@ def pregunta_01():
     214
 
     """
-    return
+    with open('data.csv, 'r') as file:
+        count = 0
+        for line in file:
+          line_splitted = repr(line)[1:-3].split("\\t")
+          count += int(line_splitted[1])
+      return count
 
 
 def pregunta_02():
@@ -39,7 +44,12 @@ def pregunta_02():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+      for line in file:
+        line_splitted = repr(line)[1:-3].split("\\t")
+        result[line_splitted[0]] = result.get(line_splitted[0], 0) + 1
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_03():
@@ -57,7 +67,12 @@ def pregunta_03():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+      for line in file:
+        line_splitted = repr(line)[1:-3].split("\\t")
+        result[line_splitted[0]] = result.get(line_splitted[0], 0) + int(line_splitted[1])
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_04():
@@ -82,7 +97,13 @@ def pregunta_04():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+      for line in file:
+        line_splitted = repr(line)[1:-3].split("\\t")
+        date = line_splitted[2].split('-')
+        result[date[1]] = result.get(date[1], 0) + 1
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_05():
@@ -100,7 +121,15 @@ def pregunta_05():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if line_splitted[0] in result:
+                result[line_splitted[0]] += [int(line_splitted[1])]
+            else:
+                result[line_splitted[0]] = [int(line_splitted[1])]
+    return sorted([(k, max(v), min(v)) for k, v in result.items()])
 
 
 def pregunta_06():
@@ -125,7 +154,18 @@ def pregunta_06():
     ]
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c3 = dict(zip([sublist[0] for sublist in dict_c3_list], [int(sublist[1]) for sublist in dict_c3_list]))
+        for k, v in dict_c3.items():
+            if k in result:
+                result[k] += [v]
+            else:
+                result[k] = [v]
+    return sorted([(k, min(v), max(v)) for k, v in result.items()])
 
 
 def pregunta_07():
