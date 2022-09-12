@@ -24,9 +24,9 @@ def pregunta_01():
     with open('/blob/main/data.csv', 'r') as file:
         count = 0
         for line in file:
-          line_splitted = repr(line)[1:-3].split("\\t")
-          count += int(line_splitted[1])
-      return count
+            line_splitted = repr(line)[1:-3].split("\\t")
+            count += int(line_splitted[1])
+    return count
 
 
 def pregunta_02():
@@ -46,9 +46,9 @@ def pregunta_02():
     """
     result = {}
     with open('/blob/main/data.csv', 'r') as file:
-      for line in file:
-        line_splitted = repr(line)[1:-3].split("\\t")
-        result[line_splitted[0]] = result.get(line_splitted[0], 0) + 1
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + 1
     return sorted([(k, v) for k, v in result.items()])
 
 
@@ -69,9 +69,9 @@ def pregunta_03():
     """
     result = {}
     with open('/blob/main/data.csv', 'r') as file:
-      for line in file:
-        line_splitted = repr(line)[1:-3].split("\\t")
-        result[line_splitted[0]] = result.get(line_splitted[0], 0) + int(line_splitted[1])
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + int(line_splitted[1])
     return sorted([(k, v) for k, v in result.items()])
 
 
@@ -99,10 +99,10 @@ def pregunta_04():
     """
     result = {}
     with open('/blob/main/data.csv', 'r') as file:
-      for line in file:
-        line_splitted = repr(line)[1:-3].split("\\t")
-        date = line_splitted[2].split('-')
-        result[date[1]] = result.get(date[1], 0) + 1
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            date = line_splitted[2].split('-')
+            result[date[1]] = result.get(date[1], 0) + 1
     return sorted([(k, v) for k, v in result.items()])
 
 
