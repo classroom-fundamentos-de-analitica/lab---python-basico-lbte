@@ -313,7 +313,16 @@ def pregunta_11():
 
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            col4 = line_splitted[-2].split(",")
+            for letter in col4:
+                result[letter] = result.get(letter, 0) + int(line_splitted[1])
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
 
 
 def pregunta_12():
@@ -331,4 +340,13 @@ def pregunta_12():
     }
 
     """
-    return
+    result = {}
+    with open(data_path, 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c5_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c5 = dict(zip([sublist[0] for sublist in dict_c5_list], [int(sublist[1]) for sublist in dict_c5_list]))
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + sum(dict_c5.values())
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
