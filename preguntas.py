@@ -159,7 +159,7 @@ def pregunta_06():
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
-            dict_c3 = dict(zip([sublist[0] for sublist in dict_c3_list], [int(sublist[1]) for sublist in dict_c3_list]))
+            dict_c3 = dict(zip([sublist1[0] for sublist1 in dict_c3_list], [int(sublist2[1]) for sublist2 in dict_c3_list]))
         for k, v in dict_c3.items():
             if k in result:
                 result[k] += [v]
