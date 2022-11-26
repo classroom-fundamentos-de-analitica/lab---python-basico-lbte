@@ -155,7 +155,7 @@ def pregunta_06():
 
     """
     result = {}
-    with open(data_path, 'r') as file:
+    with open('data.csv', 'r') as file:
         for line in file:
             line_splitted = repr(line)[1:-3].split("\\t")
             dict_c5_list = [item.split(':') for item in line_splitted[-1].split(',')]
