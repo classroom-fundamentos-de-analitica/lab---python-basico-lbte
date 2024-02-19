@@ -21,7 +21,12 @@ def pregunta_01():
     214
 
     """
-    return
+    with open('data.csv', 'r') as file:
+        count = 0
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            count += int(line_splitted[1])
+    return count
 
 
 def pregunta_02():
@@ -39,7 +44,12 @@ def pregunta_02():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + 1
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_03():
@@ -57,7 +67,12 @@ def pregunta_03():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + int(line_splitted[1])
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_04():
@@ -82,7 +97,13 @@ def pregunta_04():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            date = line_splitted[2].split('-')
+            result[date[1]] = result.get(date[1], 0) + 1
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_05():
@@ -100,7 +121,15 @@ def pregunta_05():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if line_splitted[0] in result:
+                result[line_splitted[0]] += [int(line_splitted[1])]
+            else:
+                result[line_splitted[0]] = [int(line_splitted[1])]
+    return sorted([(k, max(v), min(v)) for k, v in result.items()])
 
 
 def pregunta_06():
@@ -125,7 +154,18 @@ def pregunta_06():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c5_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c5 = dict(zip([sublist[0] for sublist in dict_c5_list], [int(sublist[1]) for sublist in dict_c5_list]))
+            for k, v in dict_c5.items():
+                if k in result:
+                    result[k] += [v]
+                else:
+                    result[k] = [v]
+    return sorted([(str(k), min(v), max(v)) for k, v in result.items()])
 
 
 def pregunta_07():
@@ -149,7 +189,15 @@ def pregunta_07():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if int(line_splitted[1]) in result:
+                result[int(line_splitted[1])] += [line_splitted[0]]
+            else:
+                result[int(line_splitted[1])] = [line_splitted[0]]
+    return sorted([(k, v) for k, v in result.items()])
 
 
 def pregunta_08():
@@ -174,7 +222,15 @@ def pregunta_08():
     ]
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            if int(line_splitted[1]) in result:
+                result[int(line_splitted[1])] += [line_splitted[0]]
+            else:
+                result[int(line_splitted[1])] = [line_splitted[0]]
+    return sorted([(k, sorted(list(set(v)))) for k, v in result.items()])
 
 
 def pregunta_09():
@@ -197,7 +253,18 @@ def pregunta_09():
     }
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c3_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c3 = dict(zip([sublist[0] for sublist in dict_c3_list], [int(sublist[1]) for sublist in dict_c3_list]))
+            for k, v in dict_c3.items():
+                result[k] = result.get(k, 0) + 1
+
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
 
 
 def pregunta_10():
@@ -218,7 +285,14 @@ def pregunta_10():
 
 
     """
-    return
+    result = []
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            col4 = line_splitted[-2].split(",")
+            col5 = line_splitted[-1].split(",")
+            result.append((line_splitted[0], len(col4), len(col5)))
+    return result
 
 
 def pregunta_11():
@@ -239,7 +313,16 @@ def pregunta_11():
 
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            col4 = line_splitted[-2].split(",")
+            for letter in col4:
+                result[letter] = result.get(letter, 0) + int(line_splitted[1])
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
 
 
 def pregunta_12():
@@ -257,4 +340,13 @@ def pregunta_12():
     }
 
     """
-    return
+    result = {}
+    with open('data.csv', 'r') as file:
+        for line in file:
+            line_splitted = repr(line)[1:-3].split("\\t")
+            dict_c5_list = [item.split(':') for item in line_splitted[-1].split(',')]
+            dict_c5 = dict(zip([sublist[0] for sublist in dict_c5_list], [int(sublist[1]) for sublist in dict_c5_list]))
+            result[line_splitted[0]] = result.get(line_splitted[0], 0) + sum(dict_c5.values())
+        dictionary_keys = sorted(list(result.keys()))
+        sorted_dict = {dictionary_keys[i]: result[dictionary_keys[i]] for i in range(len(dictionary_keys))}
+    return sorted_dict
